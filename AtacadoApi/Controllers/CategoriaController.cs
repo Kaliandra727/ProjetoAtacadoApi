@@ -47,7 +47,7 @@ namespace AtacadoApi.Controllers
         }
 
         [HttpDelete("{id:int}")]
-        public CategoriaPoco Delete(int id)
+        public CategoriaPoco DeleteById(int id)
         {
             return this.servico.Excluir(id);
         }
