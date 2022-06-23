@@ -28,6 +28,12 @@ namespace AtacadoApi.Controllers
             return this.servico.Listar(skip, take);
         }
 
+        [HttpGet("{id:int}")]
+        public SubcategoriaPoco GetByID(int id)
+        {
+            return this.servico.Selecionar(id);
+        }
+
         [HttpPost]
         public SubcategoriaPoco Post([FromBody] SubcategoriaPoco poco)
         {

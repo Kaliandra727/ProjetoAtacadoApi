@@ -18,7 +18,7 @@ namespace Atacado.Mapper.Auxiliar
             {
                 cfg.CreateMap<Idioma, IdiomaPoco>();
 
-                cfg.CreateMap<IdiomaMapper, Idioma>();
+                cfg.CreateMap<IdiomaPoco, Idioma>();
             });
             getMapper = configuration.CreateMapper();
         }

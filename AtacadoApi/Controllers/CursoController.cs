@@ -1,5 +1,5 @@
-﻿using Atacado.Poco.Estoque;
-using Atacado.Service.Estoque;
+﻿using Atacado.Poco.Auxiliar;
+using Atacado.Service.Auxiliar;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,47 +7,47 @@ namespace AtacadoApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProdutoController : ControllerBase
+    public class CursoController : ControllerBase
     {
-        private ProdutoService servico;
+        private CursoService servico;
 
-        public ProdutoController() : base()
+        public CursoController() : base()
         {
-            this.servico = new ProdutoService();
+            this.servico = new CursoService();
         }
 
         [HttpGet("{skip:int}/{take:int}")]
-        public List<ProdutoPoco> GetAll(int skip, int take)
+        public List<CursoPoco> GetAll(int skip, int take)
         {
-            return this.servico.Listar(skip, take);
+            return this.servico.Listar(skip ,take);
         }
 
         [HttpGet("{id:int}")]
-        public ProdutoPoco GetByID(int id)
+        public CursoPoco GetByID(int id)
         {
             return this.servico.Selecionar(id);
         }
 
         [HttpPost]
-        public ProdutoPoco Post([FromBody] ProdutoPoco poco)
+        public CursoPoco Post([FromBody] CursoPoco poco)
         {
             return this.servico.Criar(poco);
         }
 
         [HttpPut]
-        public ProdutoPoco Put([FromBody] ProdutoPoco poco)
+        public CursoPoco Put([FromBody] CursoPoco poco)
         {
             return this.servico.Atualizar(poco);
         }
 
         [HttpDelete]
-        public ProdutoPoco Delete([FromBody] ProdutoPoco poco)
+        public CursoPoco Delete([FromBody] CursoPoco poco)
         {
             return this.servico.Excluir(poco);
         }
 
         [HttpDelete("{id:int}")]
-        public ProdutoPoco DeleteById(int id)
+        public CursoPoco DeleteById(int id)
         {
             return this.servico.Excluir(id);
         }
