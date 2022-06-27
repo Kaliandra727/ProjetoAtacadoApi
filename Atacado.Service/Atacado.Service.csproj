@@ -25,6 +25,7 @@
     <ProjectReference Include="..\Atacado.Dal\Atacado.Dal.csproj" />
     <ProjectReference Include="..\Atacado.Mapper\Atacado.Mapper.csproj" />
     <ProjectReference Include="..\Atacado.Poco\Atacado.Poco.csproj" />
+    <ProjectReference Include="..\Atacado.Repository\Atacado.Repository.csproj" />
   </ItemGroup>
 
 </Project>

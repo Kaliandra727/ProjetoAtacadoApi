@@ -2,6 +2,7 @@
 using Atacado.EF.Database;
 using Atacado.Mapper.Auxiliar;
 using Atacado.Poco.Auxiliar;
+using Atacado.Repository.Auxiliar;
 using Atacado.Service.Ancestral;
 using System;
 using System.Collections.Generic;
@@ -11,20 +12,20 @@ using System.Threading.Tasks;
 
 namespace Atacado.Service.Auxiliar
 {
-    public class ProfissaoService : BaseAncestralService<ProfissaoPoco>
+    public class ProfissaoService : BaseAncestralService<ProfissaoPoco, Profissao>
     {
         private ProfissaoMapper mapConfig;
-        private ProfissaoDao dao;
+        private ProfissaoRepository repositorio;
 
         public ProfissaoService()
         {
             this.mapConfig = new ProfissaoMapper();
-            this.dao = new ProfissaoDao();
+            this.repositorio = new ProfissaoRepository(new AtacadoContext());
         }
 
         public override List<ProfissaoPoco> Listar()
         {
-            List<Profissao> listDom = this.dao.ReadAll().Skip(0).Take(100).ToList();
+            List<Profissao> listDom = this.repositorio.Read().ToList();
             List<ProfissaoPoco> listPoco = new List<ProfissaoPoco>();
             foreach (Profissao item in listDom)
             {
@@ -36,7 +37,7 @@ namespace Atacado.Service.Auxiliar
 
         public override ProfissaoPoco Selecionar(int id)
         {
-            Profissao dom = this.dao.Read(id);
+            Profissao dom = this.repositorio.Read(id);
             ProfissaoPoco poco = this.mapConfig.Mapper.Map<ProfissaoPoco>(dom);
             return poco;
         }
@@ -44,32 +45,26 @@ namespace Atacado.Service.Auxiliar
         public override ProfissaoPoco Criar(ProfissaoPoco obj)
         {
             Profissao dom = this.mapConfig.Mapper.Map<Profissao>(obj);
-            Profissao criado = this.dao.Create(dom);
+            Profissao criado = this.repositorio.Add(dom);
             ProfissaoPoco poco = this.mapConfig.Mapper.Map<ProfissaoPoco>(criado);
             return poco;
         }
 
         public List<ProfissaoPoco> Listar(int pular, int exibir)
         {
-            List<Profissao> listDom = this.dao.ReadAll(pular, exibir);
+            List<Profissao> listDom = this.repositorio.Read(pular, exibir).ToList();
             return ProcessarListaDOM(listDom);
         }
 
-        private List<ProfissaoPoco> ProcessarListaDOM(List<Profissao> listDom)
+        protected override List<ProfissaoPoco> ProcessarListaDOM(List<Profissao> listDOM)
         {
-            List<ProfissaoPoco> listPoco = new List<ProfissaoPoco>();
-            foreach (Profissao item in listDom)
-            {
-                ProfissaoPoco poco = this.mapConfig.Mapper.Map<ProfissaoPoco>(item);
-                listPoco.Add(poco);
-            }
-            return listPoco;
+            return listDOM.Select(dom => this.mapConfig.Mapper.Map<ProfissaoPoco>(dom)).ToList();
         }
 
         public override ProfissaoPoco Atualizar(ProfissaoPoco obj)
         {
             Profissao dom = this.mapConfig.Mapper.Map<Profissao>(obj);
-            Profissao atualizado = this.dao.Update(dom);
+            Profissao atualizado = this.repositorio.Edit(dom);
             ProfissaoPoco poco = this.mapConfig.Mapper.Map<ProfissaoPoco>(atualizado);
             return poco;
         }
@@ -81,7 +76,7 @@ namespace Atacado.Service.Auxiliar
 
         public override ProfissaoPoco Excluir(int id)
         {
-            Profissao excluido = this.dao.Delete(id);
+            Profissao excluido = this.repositorio.DeleteById(id);
             ProfissaoPoco poco = this.mapConfig.Mapper.Map<ProfissaoPoco>(excluido);
             return poco;
         }

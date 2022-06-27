@@ -2,6 +2,7 @@
 using Atacado.EF.Database;
 using Atacado.Mapper.Estoque;
 using Atacado.Poco.Estoque;
+using Atacado.Repository.Estoque;
 using Atacado.Service.Ancestral;
 using System;
 using System.Collections.Generic;
@@ -11,32 +12,26 @@ using System.Threading.Tasks;
 
 namespace Atacado.Service.Estoque
 {
-    public class ProdutoService : BaseAncestralService<ProdutoPoco>
+    public class ProdutoService : BaseAncestralService<ProdutoPoco, Produto>
     {
         private ProdutoMapper mapConfig;
-        private ProdutoDao dao;
+        private ProdutoRepository repositorio;
 
         public ProdutoService()
         {
             this.mapConfig = new ProdutoMapper();
-            this.dao = new ProdutoDao();
+            this.repositorio = new ProdutoRepository(new AtacadoContext());
         }
 
         public override List<ProdutoPoco> Listar()
         {
-            List<Produto> listDom = this.dao.ReadAll().Skip(0).Take(100).ToList();
-            List<ProdutoPoco> listPoco = new List<ProdutoPoco>();
-            foreach (Produto item in listDom)
-            {
-                ProdutoPoco poco = this.mapConfig.Mapper.Map<ProdutoPoco>(item);
-                listPoco.Add(poco);
-            }
-            return listPoco;
+            List<Produto> listDom = this.repositorio.Read().ToList();
+            return this.ProcessarListaDOM(listDom); ;
         }
 
         public override ProdutoPoco Selecionar(int id)
         {
-            Produto dom = this.dao.Read(id);
+            Produto dom = this.repositorio.Read(id);
             ProdutoPoco poco = this.mapConfig.Mapper.Map<ProdutoPoco>(dom);
             return poco;
         }
@@ -44,32 +39,26 @@ namespace Atacado.Service.Estoque
         public override ProdutoPoco Criar(ProdutoPoco obj)
         {
             Produto dom = this.mapConfig.Mapper.Map<Produto>(obj);
-            Produto criado = this.dao.Create(dom);
+            Produto criado = this.repositorio.Add(dom);
             ProdutoPoco poco = this.mapConfig.Mapper.Map<ProdutoPoco>(criado);
             return poco;
         }
 
         public List<ProdutoPoco> Listar(int pular, int exibir)
         {
-            List<Produto> listDom = this.dao.ReadAll(pular, exibir);
+            List<Produto> listDom = this.repositorio.Read(pular, exibir).ToList();
             return ProcessarListaDOM(listDom);
         }
 
-        private List<ProdutoPoco> ProcessarListaDOM(List<Produto> listDom)
+        protected override List<ProdutoPoco> ProcessarListaDOM(List<Produto> listDOM)
         {
-            List<ProdutoPoco> listPoco = new List<ProdutoPoco>();
-            foreach (Produto item in listDom)
-            {
-                ProdutoPoco poco = this.mapConfig.Mapper.Map<ProdutoPoco>(item);
-                listPoco.Add(poco);
-            }
-            return listPoco;
+            return listDOM.Select(dom => this.mapConfig.Mapper.Map<ProdutoPoco>(dom)).ToList();
         }
 
         public override ProdutoPoco Atualizar(ProdutoPoco obj)
         {
             Produto dom = this.mapConfig.Mapper.Map<Produto>(obj);
-            Produto atualizado = this.dao.Update(dom);
+            Produto atualizado = this.repositorio.Edit(dom);
             ProdutoPoco poco = this.mapConfig.Mapper.Map<ProdutoPoco>(atualizado);
             return poco;
         }
@@ -81,7 +70,7 @@ namespace Atacado.Service.Estoque
 
         public override ProdutoPoco Excluir(int id)
         {
-            Produto excluido = this.dao.Delete(id);
+            Produto excluido = this.repositorio.DeleteById(id);
             ProdutoPoco poco = this.mapConfig.Mapper.Map<ProdutoPoco>(excluido);
             return poco;
         }

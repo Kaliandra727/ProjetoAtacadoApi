@@ -15,4 +15,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Atacado.EF\Atacado.EF.csproj" />
+  </ItemGroup>
+
 </Project>

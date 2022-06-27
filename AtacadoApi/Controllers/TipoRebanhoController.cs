@@ -5,49 +5,49 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AtacadoApi.Controllers
 {
-    [Route("api/auxiliar/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class BancoController : ControllerBase
+    public class TipoRebanhoController : ControllerBase
     {
-        private BancoService servico;
+        private TipoRebanhoService servico;
 
-        public BancoController() : base()
+        public TipoRebanhoController() : base()
         {
-            this.servico = new BancoService();
+            this.servico = new TipoRebanhoService();
         }
 
         [HttpGet]
-        public List<BancoPoco> GetAll()
+        public List<TipoRebanhoPoco> GetAll()
         {
             return this.servico.Listar();
         }
 
         [HttpGet("{id:int}")]
-        public BancoPoco GetByID(int id)
+        public TipoRebanhoPoco GetByID(int id)
         {
             return this.servico.Selecionar(id);
         }
 
         [HttpPost]
-        public BancoPoco Post([FromBody] BancoPoco poco)
+        public TipoRebanhoPoco Post([FromBody] TipoRebanhoPoco poco)
         {
             return this.servico.Criar(poco);
         }
 
         [HttpPut]
-        public BancoPoco Put([FromBody] BancoPoco poco)
+        public TipoRebanhoPoco Put([FromBody] TipoRebanhoPoco poco)
         {
             return this.servico.Atualizar(poco);
         }
 
         [HttpDelete]
-        public BancoPoco Delete([FromBody] BancoPoco poco)
+        public TipoRebanhoPoco Delete([FromBody] TipoRebanhoPoco poco)
         {
             return this.servico.Excluir(poco);
         }
 
         [HttpDelete("{id:int}")]
-        public BancoPoco DeleteById(int id)
+        public TipoRebanhoPoco DeleteById(int id)
         {
             return this.servico.Excluir(id);
         }

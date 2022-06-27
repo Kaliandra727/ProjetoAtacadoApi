@@ -16,12 +16,6 @@ namespace AtacadoApi.Controllers
             this.servico = new SubcategoriaService();
         }
 
-        [HttpGet]
-        public List<SubcategoriaPoco> GetAll()
-        {
-            return this.servico.Listar();
-        }
-
         [HttpGet("{skip:int}/{take:int}")]
         public List<SubcategoriaPoco> GetAll(int skip, int take)
         {

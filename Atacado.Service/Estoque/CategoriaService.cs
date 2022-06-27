@@ -9,35 +9,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Atacado.Dal.Estoque;
+using Atacado.Repository.Estoque;
 
 namespace Atacado.Service.Estoque
 {
-    public class CategoriaService : BaseAncestralService<CategoriaPoco>
+    public class CategoriaService : BaseAncestralService<CategoriaPoco, Categoria>
     {
         private CategoriaMapper mapConfig;
-        private CategoriaDao dao;
+        private CategoriaRepository repositorio;
 
         public CategoriaService()
         {
             this.mapConfig = new CategoriaMapper();
-            this.dao = new CategoriaDao();
+            this.repositorio = new CategoriaRepository(new AtacadoContext());
         }
 
         public override List<CategoriaPoco> Listar()
         {
-            List<Categoria> listDom = this.dao.ReadAll();
-            List<CategoriaPoco> listPoco = new List<CategoriaPoco>();
-            foreach (Categoria item in listDom)
-            {
-                CategoriaPoco poco = this.mapConfig.Mapper.Map<CategoriaPoco>(item);
-                listPoco.Add(poco);
-            }
-            return listPoco;
+            List<Categoria> listDom = this.repositorio.Read().ToList();
+            return this.ProcessarListaDOM(listDom);
+        }
+
+        protected override List<CategoriaPoco> ProcessarListaDOM(List<Categoria> listDOM)
+        {
+            return listDOM.Select(dom => this.mapConfig.Mapper.Map<CategoriaPoco>(dom)).ToList();
         }
 
         public override CategoriaPoco Selecionar(int id)
         {
-            Categoria dom = this.dao.Read(id);
+            Categoria dom = this.repositorio.Read(id);
             CategoriaPoco poco = this.mapConfig.Mapper.Map<CategoriaPoco>(dom);
             return poco;
         }
@@ -45,7 +45,7 @@ namespace Atacado.Service.Estoque
         public override CategoriaPoco Criar(CategoriaPoco obj)
         {
             Categoria dom = this.mapConfig.Mapper.Map<Categoria>(obj);
-            Categoria criado = this.dao.Create(dom);
+            Categoria criado = this.repositorio.Add(dom);
             CategoriaPoco poco = this.mapConfig.Mapper.Map<CategoriaPoco>(criado);
             return poco;
         }
@@ -53,7 +53,7 @@ namespace Atacado.Service.Estoque
         public override CategoriaPoco Atualizar(CategoriaPoco obj)
         {
             Categoria dom = this.mapConfig.Mapper.Map<Categoria>(obj);
-            Categoria atualizado = this.dao.Update(dom);
+            Categoria atualizado = this.repositorio.Edit(dom);
             CategoriaPoco poco = this.mapConfig.Mapper.Map<CategoriaPoco>(atualizado);
             return poco;
         }
@@ -65,7 +65,7 @@ namespace Atacado.Service.Estoque
 
         public override CategoriaPoco Excluir(int id)
         {
-            Categoria excluido = this.dao.Delete(id);
+            Categoria excluido = this.repositorio.DeleteById(id);
             CategoriaPoco poco = this.mapConfig.Mapper.Map<CategoriaPoco>(excluido);
             return poco;
         }
