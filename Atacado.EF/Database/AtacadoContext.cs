@@ -61,7 +61,11 @@ namespace Atacado.EF.Database
 
         public virtual DbSet<Rebanho> Rebanhos { get; set; } = null!;
 
+        /// <summary>
+        /// Adicionado pelo programador - 28/06/22.
+        /// </summary>
 
+        public virtual DbSet<Funcionario> Funcionarios { get; set; } = null!;
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -442,6 +446,26 @@ namespace Atacado.EF.Database
 
             modelBuilder.Entity<Rebanho>().ToTable("Rebanho");
 
+            //
+            // Adicionado pelo programador - 27/06/2022.
+            //
+
+            //
+            // Adicionado pelo Programador - 27/06/2022.
+            //
+
+            modelBuilder.Entity<Funcionario>(entity =>
+            {
+                entity.Property(e => e.DataInclusao).HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.Situacao).HasDefaultValueSql("((1))");
+            });
+
+            modelBuilder.Entity<Funcionario>().ToTable("Funcionario");
+
+            //
+            // Adicionado pelo Programador - 27/06/2022.
+            //
 
             OnModelCreatingPartial(modelBuilder);
         }

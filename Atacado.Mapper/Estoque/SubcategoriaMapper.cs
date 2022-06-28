@@ -2,9 +2,6 @@
 using Atacado.Mapper.Ancestral;
 using Atacado.Poco.Estoque;
 using AutoMapper;
-using Atacado.EF.Database;
-using Atacado.Mapper.Ancestral;
-using Atacado.Poco.Estoque;
 using System;
 using System.Collections.Generic;
 using System.Linq;
