@@ -68,6 +68,13 @@ namespace Atacado.EF.Database
         public virtual DbSet<Funcionario> Funcionarios { get; set; } = null!;
 
 
+        /// <summary>
+        /// Adicionado pelo programador - 29/06/2022.
+        /// </summary>
+
+        public virtual DbSet<Empresa> Empresas { get; set; } = null!;
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -466,6 +473,17 @@ namespace Atacado.EF.Database
             //
             // Adicionado pelo Programador - 27/06/2022.
             //
+
+            //
+            // Adicionado pelo programador - 29/06/2022.
+            //
+
+            modelBuilder.Entity<Empresa>().ToTable("EMPRESA");
+
+            //
+            // Adicionado pelo programador - 29/06/2022.
+            //
+
 
             OnModelCreatingPartial(modelBuilder);
         }

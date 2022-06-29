@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AtacadoApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/estoque/[controller]")]
     [ApiController]
     public class ProdutoController : ControllerBase
     {

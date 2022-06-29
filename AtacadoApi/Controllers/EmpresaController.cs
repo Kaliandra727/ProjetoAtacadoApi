@@ -1,53 +1,53 @@
-﻿using Atacado.Poco.Estoque;
-using Atacado.Service.Estoque;
+﻿using Atacado.Poco.RH;
+using Atacado.Service.RH;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AtacadoApi.Controllers
 {
-    [Route("api/estoque/[controller]")]
+    [Route("api/rh/[controller]")]
     [ApiController]
-    public class SubcategoriaController : ControllerBase
+    public class EmpresaController : ControllerBase
     {
-        private SubcategoriaService servico;
+        private EmpresaService servico;
 
-        public SubcategoriaController(): base()
+        public EmpresaController() : base()
         {
-            this.servico = new SubcategoriaService();
+            this.servico = new EmpresaService();
         }
 
         [HttpGet("{skip:int}/{take:int}")]
-        public List<SubcategoriaPoco> GetAll(int skip, int take)
+        public List<EmpresaPoco> GetAll(int skip, int take)
         {
             return this.servico.Listar(skip, take);
         }
 
         [HttpGet("{id:int}")]
-        public SubcategoriaPoco GetByID(int id)
+        public EmpresaPoco GetByID(int id)
         {
             return this.servico.Selecionar(id);
         }
 
         [HttpPost]
-        public SubcategoriaPoco Post([FromBody] SubcategoriaPoco poco)
+        public EmpresaPoco Post([FromBody] EmpresaPoco poco)
         {
             return this.servico.Criar(poco);
         }
 
         [HttpPut]
-        public SubcategoriaPoco Put([FromBody] SubcategoriaPoco poco)
+        public EmpresaPoco Put([FromBody] EmpresaPoco poco)
         {
             return this.servico.Atualizar(poco);
         }
 
         [HttpDelete]
-        public SubcategoriaPoco Delete([FromBody] SubcategoriaPoco poco)
+        public EmpresaPoco Delete([FromBody] EmpresaPoco poco)
         {
             return this.servico.Excluir(poco);
         }
 
         [HttpDelete("{id:int}")]
-        public SubcategoriaPoco DeleteById(int id)
+        public EmpresaPoco DeleteById(int id)
         {
             return this.servico.Excluir(id);
         }

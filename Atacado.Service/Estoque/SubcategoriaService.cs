@@ -1,5 +1,5 @@
 ﻿using Atacado.EF.Database;
-using Atacado.Mapper.Estoque;
+using Atacado.Mapper.Ancestral;
 using Atacado.Poco.Estoque;
 using Atacado.Repository.Estoque;
 using Atacado.Service.Ancestral;
@@ -13,12 +13,11 @@ namespace Atacado.Service.Estoque
 {
     public class SubcategoriaService : BaseAncestralService<SubcategoriaPoco, Subcategoria>
     {
-        private SubcategoriaMapper mapConfig;
         private SubcategoriaRepository repositorio;
 
         public SubcategoriaService()
         {
-            this.mapConfig = new SubcategoriaMapper();
+            this.mapeador = new MapeadorGenerico<SubcategoriaPoco, Subcategoria>();
             this.repositorio = new SubcategoriaRepository(new AtacadoContext());
         }
 
@@ -30,28 +29,28 @@ namespace Atacado.Service.Estoque
 
         protected override List<SubcategoriaPoco> ProcessarListaDOM(List<Subcategoria> listDom)
         {
-            return listDom.Select(dom => this.mapConfig.Mapper.Map<SubcategoriaPoco>(dom)).ToList();
+            return listDom.Select(dom => this.mapeador.Mecanismo.Map<SubcategoriaPoco>(dom)).ToList();
         }
         
         public override SubcategoriaPoco Selecionar(int id)
         {
             Subcategoria dom = this.repositorio.Read(id);
-            SubcategoriaPoco poco = this.mapConfig.Mapper.Map<SubcategoriaPoco>(dom);
+            SubcategoriaPoco poco = this.mapeador.Mecanismo.Map<SubcategoriaPoco>(dom);
             return poco;
         }
         public override SubcategoriaPoco Criar(SubcategoriaPoco obj)
         {
-            Subcategoria dom = this.mapConfig.Mapper.Map<Subcategoria>(obj);
+            Subcategoria dom = this.mapeador.Mecanismo.Map<Subcategoria>(obj);
             Subcategoria criado = this.repositorio.Add(dom);
-            SubcategoriaPoco poco = this.mapConfig.Mapper.Map<SubcategoriaPoco>(criado);
+            SubcategoriaPoco poco = this.mapeador.Mecanismo.Map<SubcategoriaPoco>(criado);
             return poco;
         }
 
         public override SubcategoriaPoco Atualizar(SubcategoriaPoco obj)
         {
-            Subcategoria dom = this.mapConfig.Mapper.Map<Subcategoria>(obj);
+            Subcategoria dom = this.mapeador.Mecanismo.Map<Subcategoria>(obj);
             Subcategoria atualizado = this.repositorio.Edit(dom);
-            SubcategoriaPoco poco = this.mapConfig.Mapper.Map<SubcategoriaPoco>(atualizado);
+            SubcategoriaPoco poco = this.mapeador.Mecanismo.Map<SubcategoriaPoco>(atualizado);
             return poco;
         }
 
@@ -63,7 +62,7 @@ namespace Atacado.Service.Estoque
         public override SubcategoriaPoco Excluir(int id)
         {
             Subcategoria excluido = this.repositorio.DeleteById(id);
-            SubcategoriaPoco poco = this.mapConfig.Mapper.Map<SubcategoriaPoco>(excluido);
+            SubcategoriaPoco poco = this.mapeador.Mecanismo.Map<SubcategoriaPoco>(excluido);
             return poco;
         }
     }

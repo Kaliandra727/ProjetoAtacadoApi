@@ -11,6 +11,7 @@ namespace Atacado.EF.Database
         [Key]
         [Column("ID_Pais")]
         public int IdPais { get; set; }
+
         [Column("Sigla_Pais")]
         [StringLength(3)]
         [Unicode(false)]

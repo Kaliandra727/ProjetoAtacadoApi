@@ -20,5 +20,11 @@ namespace Atacado.Repository.RH
             this.context.SaveChanges();
             return fun;
         }
+
+        public override Funcionario Read(int id)
+        {
+            return this.context.Set<Funcionario>().Find(Convert.ToInt64(id));
+        }
+
     }
 }

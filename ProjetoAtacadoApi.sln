@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AtacadoApi", "AtacadoApi\At
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atacado.Repository", "Atacado.Repository\Atacado.Repository.csproj", "{6E287917-F6BF-492B-B5AE-46D3DEE42140}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atacado.Business", "Atacado.Business\Atacado.Business.csproj", "{52DD87F7-BF17-45C6-A50F-0A3EBBA5559E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{6E287917-F6BF-492B-B5AE-46D3DEE42140}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E287917-F6BF-492B-B5AE-46D3DEE42140}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E287917-F6BF-492B-B5AE-46D3DEE42140}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52DD87F7-BF17-45C6-A50F-0A3EBBA5559E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52DD87F7-BF17-45C6-A50F-0A3EBBA5559E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52DD87F7-BF17-45C6-A50F-0A3EBBA5559E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52DD87F7-BF17-45C6-A50F-0A3EBBA5559E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +70,7 @@ Global
 		{BE3DB151-1438-4B06-80D5-5F78DE224154} = {5A9B57DE-51DA-4F8D-9215-90561A5C6C42}
 		{78EE712B-E78C-4809-9D22-F7AEC0A0140D} = {58EAF457-C6DD-4785-8043-0DED162B2F7E}
 		{6E287917-F6BF-492B-B5AE-46D3DEE42140} = {950FF0E0-085D-4A75-BE42-545C5D203AC9}
+		{52DD87F7-BF17-45C6-A50F-0A3EBBA5559E} = {5A9B57DE-51DA-4F8D-9215-90561A5C6C42}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0FE4DF47-D1ED-4478-BC73-BF7B913495DF}
