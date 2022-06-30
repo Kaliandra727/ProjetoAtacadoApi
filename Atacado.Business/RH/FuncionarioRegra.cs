@@ -8,43 +8,53 @@ using System.Threading.Tasks;
 
 namespace Atacado.Business.RH
 {
-    public class FuncionarioRegra : IRule
+    /// <summary>
+    /// 
+    /// </summary>
+    public class FuncionarioRegra : RuleAncestor<FuncionarioPoco>, IRule
     {
-        private List<string> ruleMessages;
+        public FuncionarioRegra() :base()
+        { }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="poco"></param>
+        public FuncionarioRegra(FuncionarioPoco poco) : base(poco)
+        { }
 
-        private FuncionarioPoco poco;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
 
-        public List<string> RuleMessages => this.ruleMessages;
-
-        public FuncionarioRegra(FuncionarioPoco poco)
-        {
-            this.ruleMessages = new List<string>();
-            this.poco = poco;
-        }
-
-        public bool Process()
+        public override bool Process()
         {
             bool resultado = true;
 
-            if(this.NomeRegra() == false)
+            string mensagemProcessamento = string.Empty;
+
+            if(RegrasGenericas.NomeRegra(this.poco.Nome, ref mensagemProcessamento) == false)
             {
+                this.ruleMessages.Add(mensagemProcessamento);
                 resultado = false;
             }
-
-            return resultado;
-        }
-
-        private bool NomeRegra()
-        {
-            if (string.IsNullOrEmpty(this.poco.Nome) == true)
+            if(RegrasGenericas.SobrenomeRegra(this.poco.Sobrenome, ref mensagemProcessamento) == false)
             {
-                this.ruleMessages.Add("Nome não pode ser vazio.");
-                return false;
+                this.ruleMessages.Add(mensagemProcessamento);
+                resultado = false;
             }
-            else
-                return true;
+            if(RegrasGenericas.SexoRegra(this.poco.Sexo, ref mensagemProcessamento) == false)
+            {
+                this.ruleMessages.Add(mensagemProcessamento);
+                resultado = false;
+            }
+            if(RegrasGenericas.EmailRegra(this.poco.Email, ref mensagemProcessamento) == false)
+            {
+                this.ruleMessages.Add(mensagemProcessamento);
+                resultado = false;
+
+            }
+                return resultado;
         }
-
-
     }
 }
