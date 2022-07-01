@@ -26,8 +26,18 @@ namespace AtacadoApi.Controllers
         [HttpGet("{skip:int}/{take:int}")]
         public ActionResult<List<FuncionarioPoco>> GetAll(int skip, int take)
         {
-            List<FuncionarioPoco> listResposta = this.servico.Listar(skip, take);
-            return Ok(listResposta);
+            try
+            {
+                List<FuncionarioPoco> listResposta = this.servico.Listar(skip, take);
+                return Ok(listResposta);
+
+            }
+            catch(Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+
+
         }
 
         /// <summary>
@@ -40,8 +50,16 @@ namespace AtacadoApi.Controllers
         [HttpGet("{id:int}")]
         public ActionResult<FuncionarioPoco> GetByID(int id)
         {
-            FuncionarioPoco pocoResposta = this.servico.Selecionar(id);
-            return Ok(pocoResposta);
+            try
+            {
+                FuncionarioPoco pocoResposta = this.servico.Selecionar(id);
+                return Ok(pocoResposta);
+            }
+            catch (Exception ex)
+            {
+
+                return Problem(ex.Message);
+            }
         }
 
         /// <summary>
@@ -53,8 +71,16 @@ namespace AtacadoApi.Controllers
         [HttpGet("matricula/{mat:long}")]
         public ActionResult<FuncionarioPoco> GetByMatricula(long mat)
         {
-            FuncionarioPoco pocoResposta = this.servico.SelecionarPorMatricula(mat);
-            return Ok(pocoResposta);
+            try
+            {
+                FuncionarioPoco pocoResposta = this.servico.SelecionarPorMatricula(mat);
+                return Ok(pocoResposta);
+            }
+            catch (Exception ex)
+            {
+
+                return Problem(ex.Message);
+            }
         }
 
         /// <summary>
@@ -67,15 +93,23 @@ namespace AtacadoApi.Controllers
         [HttpPost]
         public ActionResult<FuncionarioPoco> Post([FromBody] FuncionarioPoco poco)
         {
-            FuncionarioPoco pocoResposta = this.servico.Criar(poco);
+            try
+            {
+                FuncionarioPoco pocoResposta = this.servico.Criar(poco);
 
-            if(pocoResposta == null)
-            {
-                return BadRequest(this.servico.MensagemProcessamento);
+                if (pocoResposta == null)
+                {
+                    return BadRequest(this.servico.MensagemProcessamento);
+                }
+                else
+                {
+                    return Ok(pocoResposta);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return Ok(pocoResposta);
+
+                return Problem(ex.Message);
             }
         }
 
@@ -86,9 +120,18 @@ namespace AtacadoApi.Controllers
         /// <returns></returns>
 
         [HttpPut]
-        public FuncionarioPoco Put([FromBody] FuncionarioPoco poco)
+        public ActionResult<FuncionarioPoco> Put([FromBody] FuncionarioPoco poco)
         {
-            return this.servico.Atualizar(poco);
+            try
+            {
+                FuncionarioPoco pocoResposta = this.servico.Atualizar(poco);
+                return Ok(pocoResposta);
+            }
+            catch (Exception ex)
+            {
+
+                return Problem(ex.Message);
+            }
         }
 
         /// <summary>
@@ -100,8 +143,16 @@ namespace AtacadoApi.Controllers
         [HttpDelete]
         public ActionResult<FuncionarioPoco> Delete([FromBody] FuncionarioPoco poco)
         {
-            FuncionarioPoco pocoResposta = this.servico.Excluir(poco);
-            return Ok(pocoResposta);
+            try
+            {
+                FuncionarioPoco pocoResposta = this.servico.Excluir(poco);
+                return Ok(pocoResposta);
+            }
+            catch (Exception ex)
+            {
+
+                return Problem(ex.Message);
+            }
         }
 
         /// <summary>
@@ -114,8 +165,16 @@ namespace AtacadoApi.Controllers
         [HttpDelete("{id:int}")]
         public ActionResult<FuncionarioPoco> DeleteById(int id)
         {
-            FuncionarioPoco pocoResposta = this.servico.Excluir(id);
-            return Ok(pocoResposta);
+            try
+            {
+                FuncionarioPoco pocoResposta = this.servico.Excluir(id);
+                return Ok(pocoResposta);
+            }
+            catch (Exception ex)
+            {
+
+                return Problem(ex.Message);
+            }
         }
     }
 }
