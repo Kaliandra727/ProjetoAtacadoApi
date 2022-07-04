@@ -5,23 +5,29 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AtacadoApi.Controllers
 {
+    /// <summary>
+    /// Recurso Funcionário.
+    /// </summary>
+
     [Route("api/rh/[controller]")]
     [ApiController]
     public class FuncionarioController : ControllerBase
     {
         private FuncionarioService servico;
-
+        /// <summary>
+        /// Construtor da classe.
+        /// </summary>
         public FuncionarioController() : base()
         {
             this.servico = new FuncionarioService();
         }
 
         /// <summary>
-        /// 
+        /// Realiza a busca por todos os registros, filtrando onde inicia (skip) e a Quantidade (take)
         /// </summary>
-        /// <param name="skip">Variável que irá receber o valor para pular.</param>
-        /// <param name="take">Variável que vai receber o numero de informações para exibir.</param>
-        /// <returns></returns>
+        /// <param name="skip">Onde inicia os resultados da pesquisa.</param>
+        /// <param name="take">Quantos registros serão retornados.</param>
+        /// <returns>Coleção de dados.</returns>
 
         [HttpGet("{skip:int}/{take:int}")]
         public ActionResult<List<FuncionarioPoco>> GetAll(int skip, int take)
