@@ -46,7 +46,7 @@ namespace AtacadoApi.Controllers
         /// <summary>
         /// Retorna a busca pelo registro que possui o ID indicado.
         /// </summary>
-        /// <param name="id">`Número pelo qual a pesquisa é feita.</param>
+        /// <param name="id">Número pelo qual a pesquisa é feita.</param>
         /// <returns>Informações sobre o ID indicado.</returns>
         [HttpGet("{id:int}")]
         public ActionResult<RebanhoPoco> GetPorID(int id)

@@ -4,6 +4,49 @@
         <name>AtacadoApi</name>
     </assembly>
     <members>
+        <member name="M:AtacadoApi.Controllers.EmpresaController.GetAll(System.Int32,System.Int32)">
+            <summary>
+            Realiza a busca por todos os registros, filtrando onde inicia (skip) e a Quantidade (take).
+            </summary>
+            <param name="skip">Onde inicia os resultados da pesquisa.</param>
+            <param name="take">Quantos registros serão retornados.</param>
+            <returns>Coleção de dados.</returns>
+        </member>
+        <member name="M:AtacadoApi.Controllers.EmpresaController.GetByID(System.Int32)">
+            <summary>
+            Realiza busca pelos registros através do ID.
+            </summary>
+            <param name="id">Código pelo qual a busca deverá ser realizada.</param>
+            <returns>Informações Ligadas ao código inserido.</returns>
+        </member>
+        <member name="M:AtacadoApi.Controllers.EmpresaController.Post(Atacado.Poco.RH.EmpresaPoco)">
+            <summary>
+            Cria uma nova empresa.
+            </summary>
+            <param name="poco">Dados que a serem inseridos.</param>
+            <returns>A nova empresa e seus dados.</returns>
+        </member>
+        <member name="M:AtacadoApi.Controllers.EmpresaController.Put(Atacado.Poco.RH.EmpresaPoco)">
+            <summary>
+            Atualiza os dados de uma empresa.
+            </summary>
+            <param name="poco">Dados a serem atualizados.</param>
+            <returns>Dados atualizados.</returns>
+        </member>
+        <member name="M:AtacadoApi.Controllers.EmpresaController.Delete(Atacado.Poco.RH.EmpresaPoco)">
+            <summary>
+            Excluiu os registros de empresa.
+            </summary>
+            <param name="poco">Registros a serem excluidos.</param>
+            <returns>Coleção de dados deletados.</returns>
+        </member>
+        <member name="M:AtacadoApi.Controllers.EmpresaController.DeleteById(System.Int32)">
+            <summary>
+            Exclui um registro de empresa.
+            </summary>
+            <param name="id">Registro a ser excluido.</param>
+            <returns>rRegistro que foi excluido.</returns>
+        </member>
         <member name="T:AtacadoApi.Controllers.FuncionarioController">
             <summary>
             Recurso Funcionário.
@@ -86,7 +129,7 @@
             <summary>
             Retorna a busca pelo registro que possui o ID indicado.
             </summary>
-            <param name="id">`Número pelo qual a pesquisa é feita.</param>
+            <param name="id">Número pelo qual a pesquisa é feita.</param>
             <returns>Informações sobre o ID indicado.</returns>
         </member>
         <member name="M:AtacadoApi.Controllers.RebanhoController.GetPorAnoRefIdMun(System.Int32,System.Int32)">
