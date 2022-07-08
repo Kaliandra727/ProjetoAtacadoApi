@@ -4,6 +4,49 @@
         <name>AtacadoApi</name>
     </assembly>
     <members>
+        <member name="M:AtacadoApi.Controllers.AquiculturaController.Get(System.Int32,System.Int32)">
+            <summary>
+            Realiza a busca por todos os registros, filtrando onde inicia (skip) e a Quantidade (take).
+            </summary>
+            <param name="skip">Onde inicia os resultados da pesquisa.</param>
+            <param name="take">Quantos registros serão retornados.</param>
+            <returns>Conjunto de dados.</returns>
+        </member>
+        <member name="M:AtacadoApi.Controllers.AquiculturaController.GetByID(System.Int32)">
+            <summary>
+            Realiza busca pelos registros através do ID.
+            </summary>
+            <param name="id">Código pelo qual a busca deverá ser realizada.</param>
+            <returns>Informações Ligadas ao código inserido.</returns>
+        </member>
+        <member name="M:AtacadoApi.Controllers.AquiculturaController.Post(Atacado.Poco.Auxiliar.AquiculturaPoco)">
+            <summary>
+            Cria um novo registro de Aquicultura.
+            </summary>
+            <param name="poco">Dados que a serem inseridos.</param>
+            <returns>O novo registro e seus dados.</returns>
+        </member>
+        <member name="M:AtacadoApi.Controllers.AquiculturaController.Put(Atacado.Poco.Auxiliar.AquiculturaPoco)">
+            <summary>
+            Atualiza os dados de um registro de Aquicultura.
+            </summary>
+            <param name="poco">Dados a serem atualizados.</param>
+            <returns>Dados atualizados.</returns>
+        </member>
+        <member name="M:AtacadoApi.Controllers.AquiculturaController.Delete(Atacado.Poco.Auxiliar.AquiculturaPoco)">
+            <summary>
+            Excluiu os registros de Aquicultura.
+            </summary>
+            <param name="poco">Registros a serem excluidos.</param>
+            <returns>Coleção de dados deletados.</returns>
+        </member>
+        <member name="M:AtacadoApi.Controllers.AquiculturaController.DeleteById(System.Int32)">
+            <summary>
+            Exclui um registro de Aquicultura.
+            </summary>
+            <param name="id">Registro a ser excluido.</param>
+            <returns>rRegistro que foi excluido.</returns>
+        </member>
         <member name="M:AtacadoApi.Controllers.EmpresaController.GetAll(System.Int32,System.Int32)">
             <summary>
             Realiza a busca por todos os registros, filtrando onde inicia (skip) e a Quantidade (take).
@@ -167,6 +210,56 @@
             </summary>
             <param name="id">O Código do rebanho a ser deletado.</param>
             <returns>O rebanho que foi deletado.</returns>
+        </member>
+        <member name="M:AtacadoApi.Controllers.ReworkRelatorioController.GetRelatorioCategoriaPorId(System.Int32)">
+            <summary>
+            Realiza busca pelos registros através do ID de Categoria.
+            </summary>
+            <param name="id">Código a ser pesquisado.</param>
+            <returns></returns>
+        </member>
+        <member name="M:AtacadoApi.Controllers.TipoAquiculturaController.Get(System.Int32,System.Int32)">
+            <summary>
+            Realiza a busca por todos os registros, filtrando onde inicia (skip) e a Quantidade (take).
+            </summary>
+            <param name="skip">Onde inicia os resultados da pesquisa.</param>
+            <param name="take">Quantos registros serão retornados.</param>
+            <returns>Conjunto de dados.</returns>
+        </member>
+        <member name="M:AtacadoApi.Controllers.TipoAquiculturaController.GetByID(System.Int32)">
+            <summary>
+            Realiza busca pelos registros através do ID.
+            </summary>
+            <param name="id">Código pelo qual a busca deverá ser realizada.</param>
+            <returns>Informações Ligadas ao código inserido.</returns>
+        </member>
+        <member name="M:AtacadoApi.Controllers.TipoAquiculturaController.Post(Atacado.Poco.Auxiliar.TipoAquiculturaPoco)">
+            <summary>
+            Cria um novo Tipo de Aquicultura.
+            </summary>
+            <param name="poco">Dados que a serem inseridos.</param>
+            <returns>O novo Tipo de Aquicultura e seus dados.</returns>
+        </member>
+        <member name="M:AtacadoApi.Controllers.TipoAquiculturaController.Put(Atacado.Poco.Auxiliar.TipoAquiculturaPoco)">
+            <summary>
+            Atualiza os dados de um Tipo de Aquicultura.
+            </summary>
+            <param name="poco">Dados a serem atualizados.</param>
+            <returns>Dados atualizados.</returns>
+        </member>
+        <member name="M:AtacadoApi.Controllers.TipoAquiculturaController.Delete(Atacado.Poco.Auxiliar.TipoAquiculturaPoco)">
+            <summary>
+            Excluiu os registros de TipoAquicultura.
+            </summary>
+            <param name="poco">Registros a serem excluidos.</param>
+            <returns>Coleção de dados deletados.</returns>
+        </member>
+        <member name="M:AtacadoApi.Controllers.TipoAquiculturaController.DeleteById(System.Int32)">
+            <summary>
+            Exclui um registro de TipoAquicultura.
+            </summary>
+            <param name="id">Registro a ser excluido.</param>
+            <returns>rRegistro que foi excluido.</returns>
         </member>
     </members>
 </doc>

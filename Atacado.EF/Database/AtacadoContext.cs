@@ -74,6 +74,18 @@ namespace Atacado.EF.Database
 
         public virtual DbSet<Empresa> Empresas { get; set; } = null!;
 
+        /// <summary>
+        /// Adicionado pelo Programador - 08/07/2022.
+        /// </summary>
+
+        public virtual DbSet<TipoAquicultura> TipoAquiculturas { get; set; } = null!;
+
+        /// <summary>
+        /// Adicionado pelo Programador - 08/07/2022.
+        /// </summary>
+        public virtual DbSet<Aquicultura> Aquiculturas { get; set; } = null!;
+
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -484,6 +496,26 @@ namespace Atacado.EF.Database
             // Adicionado pelo programador - 29/06/2022.
             //
 
+            //
+            // Adicinado peo programador - 08/07/2022.
+            //
+            
+            modelBuilder.Entity<TipoAquicultura>(entity =>
+            {
+                entity.Property(e => e.Situacao).HasDefaultValueSql("((1))");
+            });
+
+            modelBuilder.Entity<TipoAquicultura>().ToTable("Tipo_Aquicultura");
+
+            //
+            // Adicinado peo programador - 08/07/2022.
+            //
+
+            modelBuilder.Entity<Aquicultura>().ToTable("Aquicultura");
+
+            //
+            // Adicinado peo programador - 08/07/2022.
+            //
 
             OnModelCreatingPartial(modelBuilder);
         }
