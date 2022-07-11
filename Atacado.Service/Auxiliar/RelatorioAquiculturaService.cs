@@ -2,11 +2,6 @@
 using Atacado.Poco.Auxiliar;
 using Atacado.Repository.Auxiliar;
 using Atacado.Repository.IBGE;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Atacado.Service.Auxiliar
 {
@@ -32,14 +27,14 @@ namespace Atacado.Service.Auxiliar
             List<RelatorioAquiculturaPoco> retorno =
                 (from aqi in this.contexto.Aquiculturas
                  join tip in this.contexto.TipoAquiculturas on aqi.IdTipoAquicultura equals tip.IdTipoAquicultura
-                 join mun in this.contexto.Municipio1s on aqi.IdMunicipio equals mun.CodIbge7
+                 join mun in this.contexto.Municipio1s on aqi.IdMunicipio equals mun.CodigoIbge7
                  join uf in this.contexto.UnidadesFederacaos on mun.SiglaUf equals uf.SiglaUf
                  where (aqi.IdAquicultura == idAquicultura) && (aqi.Ano == ano) && (aqi.IdMunicipio == idMunicipio)
                  select new RelatorioAquiculturaPoco
                  {
                      IdAquicultura = aqi.IdAquicultura,
                      IdTipoAquicultura = tip.IdTipoAquicultura,
-                     DescricaoTipoAquicultura = tip.Descricao,
+                     DescricaoTipoAquicultura = tip.DescricaoTipoAquicultura,
                      IdMunicipio = aqi.IdMunicipio,
                      Ano = aqi.Ano,
                      Producao = aqi.Producao,
@@ -48,7 +43,7 @@ namespace Atacado.Service.Auxiliar
                      Moeda = aqi.Moeda,
                      NomeMunicipio = mun.NomeMunicipio,
                      SiglaUf = uf.SiglaUf,
-                     DescricaoUnidadeFederacao = uf.DescricaoUnidadesFederacao,
+                     DescricaoUnidadeFederacao = uf.DescricaoUf,
                  }).ToList();
             return retorno;
         }
@@ -58,14 +53,14 @@ namespace Atacado.Service.Auxiliar
             List<RelatorioAquiculturaPoco> retorno = 
                 (from aqi in this.contexto.Aquiculturas
                  join tip in this.contexto.TipoAquiculturas on aqi.IdTipoAquicultura equals tip.IdTipoAquicultura
-                 join mun in this.contexto.Municipio1s on aqi.IdMunicipio equals mun.CodIbge7
+                 join mun in this.contexto.Municipio1s on aqi.IdMunicipio equals mun.CodigoIbge7
                  join uf in this.contexto.UnidadesFederacaos on mun.SiglaUf equals uf.SiglaUf
                  where (aqi.IdMunicipio == idMunicipio) && (aqi.Ano == ano) && (aqi.Producao != null)
                  select new RelatorioAquiculturaPoco
                  {
                      IdAquicultura = aqi.IdAquicultura,
                      IdTipoAquicultura = tip.IdTipoAquicultura,
-                     DescricaoTipoAquicultura = tip.Descricao,
+                     DescricaoTipoAquicultura = tip.DescricaoTipoAquicultura,
                      IdMunicipio = aqi.IdMunicipio,
                      Ano = aqi.Ano,
                      Producao = aqi.Producao,
@@ -74,7 +69,7 @@ namespace Atacado.Service.Auxiliar
                      Moeda = aqi.Moeda,
                      NomeMunicipio = mun.NomeMunicipio,
                      SiglaUf = uf.SiglaUf,
-                     DescricaoUnidadeFederacao = uf.DescricaoUnidadesFederacao,
+                     DescricaoUnidadeFederacao = uf.DescricaoUf,
                  }).ToList();
             return retorno;
         }

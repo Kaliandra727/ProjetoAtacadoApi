@@ -18,7 +18,7 @@ namespace AtacadoApi.Controllers
                 var retorno =
                     from rebs in contexto.Rebanhos
                     where rebs.IdTipoRebanho == idRebanho
-                    join muns in contexto.Municipio1s on rebs.IdMunicipio equals muns.CodIbge7
+                    join muns in contexto.Municipio1s on rebs.IdMunicipio equals muns.CodigoIbge7
                     join est in contexto.UnidadesFederacaos on muns.SiglaUf equals est.SiglaUf
                     select new
                     {
@@ -27,7 +27,7 @@ namespace AtacadoApi.Controllers
                         IdMunicipio = rebs.IdMunicipio,
                         NomeMunicipio = muns.NomeMunicipio,
                         SiglaUF = est.SiglaUf,
-                        NomeEstado = est.DescricaoUnidadesFederacao,
+                        NomeEstado = est.DescricaoUf,
                         IdTipoRebanho = rebs.IdTipoRebanho,
                         NomeRebanho = rebs.TipoRebanho,
                         Quantidade = rebs.Quantidade,
@@ -51,7 +51,7 @@ namespace AtacadoApi.Controllers
                 var retorno =
                     from rebs in contexto.Rebanhos
                     where (rebs.AnoRef == anoRef && rebs.IdMunicipio == idMun)
-                    join mun in contexto.Municipio1s on rebs.IdMunicipio equals mun.CodIbge7
+                    join mun in contexto.Municipio1s on rebs.IdMunicipio equals mun.CodigoIbge7
                     join est in contexto.UnidadesFederacaos on mun.SiglaUf equals est.SiglaUf
                     select new
                     {
@@ -60,7 +60,7 @@ namespace AtacadoApi.Controllers
                         IdMunicipio = rebs.IdMunicipio,
                         NomeMunicipio = mun.NomeMunicipio,
                         SiglaUF = est.SiglaUf,
-                        NomeEstado = est.DescricaoUnidadesFederacao,
+                        NomeEstado = est.DescricaoUf,
                         IdTipoRebanho = rebs.IdTipoRebanho,
                         NomeRebanho = rebs.TipoRebanho,
                         Quantidade = rebs.Quantidade,

@@ -32,7 +32,7 @@ namespace Atacado.EF.Database
         public virtual DbSet<Idioma> Idiomas { get; set; } = null!;
         public virtual DbSet<Mesoregiao> Mesoregiaos { get; set; } = null!;
         public virtual DbSet<Microregiao> Microregiaos { get; set; } = null!;
-        public virtual DbSet<Municipio1> Municipio1s { get; set; } = null!;
+        public virtual DbSet<Municipio> Municipio1s { get; set; } = null!;
         public virtual DbSet<Nome> Nomes { get; set; } = null!;
         public virtual DbSet<Pai> Pais { get; set; } = null!;
         public virtual DbSet<Pedido> Pedidos { get; set; } = null!;
@@ -41,7 +41,7 @@ namespace Atacado.EF.Database
         public virtual DbSet<RawDataCidade> RawDataCidades { get; set; } = null!;
         public virtual DbSet<RawDataListaDeMunicipio> RawDataListaDeMunicipios { get; set; } = null!;
         public virtual DbSet<RawDataMunicipio> RawDataMunicipios { get; set; } = null!;
-        public virtual DbSet<SubDestrito> SubDestritos { get; set; } = null!;
+        public virtual DbSet<SubDistrito> SubDestritos { get; set; } = null!;
         public virtual DbSet<Subcategoria> Subcategorias { get; set; } = null!;
         public virtual DbSet<TipoFormaPagto> TipoFormaPagtos { get; set; } = null!;
         public virtual DbSet<TipoLogradouro> TipoLogradouros { get; set; } = null!;
@@ -275,7 +275,7 @@ namespace Atacado.EF.Database
                     .HasConstraintName("FK_Unidades_Microregiao");
             });
 
-            modelBuilder.Entity<Municipio1>(entity =>
+            modelBuilder.Entity<Municipio>(entity =>
             {
                 entity.Property(e => e.DataInclusao).HasDefaultValueSql("(getdate())");
 
@@ -361,7 +361,7 @@ namespace Atacado.EF.Database
                 entity.Property(e => e.Ufid).IsFixedLength();
             });
 
-            modelBuilder.Entity<SubDestrito>(entity =>
+            modelBuilder.Entity<SubDistrito>(entity =>
             {
                 entity.Property(e => e.DataInclusao).HasDefaultValueSql("(getdate())");
 
@@ -370,7 +370,7 @@ namespace Atacado.EF.Database
                 entity.Property(e => e.Situacao).HasDefaultValueSql("((1))");
 
                 entity.HasOne(d => d.SiglaUfNavigation)
-                    .WithMany(p => p.SubDestritos)
+                    .WithMany(p => p.SubDistritos)
                     .HasPrincipalKey(p => p.SiglaUf)
                     .HasForeignKey(d => d.SiglaUf)
                     .HasConstraintName("FK_Unidades_Federacao_Sigla");
@@ -415,7 +415,7 @@ namespace Atacado.EF.Database
 
             modelBuilder.Entity<UnidadesFederacao>(entity =>
             {
-                entity.HasKey(e => e.IdUnidadesFederacao)
+                entity.HasKey(e => e.IdUf)
                     .HasName("PK_Unidade_Federacao");
 
                 entity.Property(e => e.DataInclusao).HasDefaultValueSql("(getdate())");

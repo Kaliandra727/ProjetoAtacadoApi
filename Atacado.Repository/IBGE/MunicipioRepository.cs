@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace Atacado.Repository.IBGE
 {
-    public class MunicipioRepository : BaseRepository<Municipio1>
+    public class MunicipioRepository : BaseRepository<Municipio>
     {
         public MunicipioRepository(AtacadoContext contexto) : base(contexto)
         {
         }
 
-        public override Municipio1 DeleteById(int id)
+        public override Municipio DeleteById(int id)
         {
-            Municipio1 mun = this.Read(id);
-            this.context.Set<Municipio1>().Remove(mun);
+            Municipio mun = this.Read(id);
+            this.context.Set<Municipio>().Remove(mun);
             this.context.SaveChanges();
             return mun;
         }

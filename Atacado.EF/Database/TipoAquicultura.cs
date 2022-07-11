@@ -18,7 +18,7 @@ namespace Atacado.EF.Database
 
         [Column("Descricao_Tipo_Aquicultura")]
         [Unicode(false)]
-        public string Descricao { get; set; }
+        public string DescricaoTipoAquicultura { get; set; }
 
         public bool? Situacao { get; set; }
     }

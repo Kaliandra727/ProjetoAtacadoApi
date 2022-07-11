@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Atacado.EF.Database
 {
     [Table("Sub_Destrito")]
-    public partial class SubDestrito
+    public partial class SubDistrito
     {
         [Key]
         [Column("ID_Sub_Destrito")]
