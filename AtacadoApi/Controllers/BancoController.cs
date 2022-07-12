@@ -1,4 +1,5 @@
-﻿using Atacado.Poco.Auxiliar;
+﻿using Atacado.EF.Database;
+using Atacado.Poco.Auxiliar;
 using Atacado.Service.Auxiliar;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,9 +12,9 @@ namespace AtacadoApi.Controllers
     {
         private BancoService servico;
 
-        public BancoController() : base()
+        public BancoController(AtacadoContext contexto) : base()
         {
-            this.servico = new BancoService();
+            this.servico = new BancoService(contexto);
         }
 
         [HttpGet]

@@ -28,7 +28,7 @@ namespace Atacado.EF.Database
         [Column(TypeName = "datetime")]
         public DateTime? DataInclusao { get; set; }
         [Column(TypeName = "datetime")]
-        public DateTime? DataAlteraçao { get; set; }
+        public DateTime? DataAlteracao { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? DataExclusao { get; set; }
 

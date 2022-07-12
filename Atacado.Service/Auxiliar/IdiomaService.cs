@@ -21,6 +21,12 @@ namespace Atacado.Service.Auxiliar
             this.repositorio = new IdiomaRepository(new AtacadoContext());
         }
 
+        public IdiomaService(AtacadoContext contexto)
+        {
+            this.mapeador = new MapeadorGenerico<IdiomaPoco, Idioma>();
+            this.repositorio = new IdiomaRepository(contexto);
+        }
+
         public override List<IdiomaPoco> Listar()
         {
             List<Idioma> listDom = this.repositorio.Read().ToList();

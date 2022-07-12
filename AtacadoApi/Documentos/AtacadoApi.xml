@@ -95,7 +95,7 @@
             Recurso Funcionário.
             </summary>
         </member>
-        <member name="M:AtacadoApi.Controllers.FuncionarioController.#ctor">
+        <member name="M:AtacadoApi.Controllers.FuncionarioController.#ctor(Atacado.EF.Database.AtacadoContext)">
             <summary>
             Construtor da classe.
             </summary>
@@ -155,7 +155,7 @@
             Recurso Rebanho.
             </summary>
         </member>
-        <member name="M:AtacadoApi.Controllers.RebanhoController.#ctor">
+        <member name="M:AtacadoApi.Controllers.RebanhoController.#ctor(Atacado.EF.Database.AtacadoContext)">
             <summary>
             Construtor da classe.
             </summary>

@@ -20,6 +20,13 @@ namespace Atacado.Service.RH
             this.regra = new FuncionarioRegra();
         }
 
+        public FuncionarioService(AtacadoContext contexto) : base()
+        {
+            this.mapeador = new MapeadorGenerico<FuncionarioPoco, Funcionario>();
+            this.repositorio = new FuncionarioRepository(contexto);
+            this.regra = new FuncionarioRegra();
+        }
+
         public List<FuncionarioPoco> Listar(int pular, int exibir)
         {
             List<Funcionario> listDom = this.repositorio.Read(pular, exibir).ToList();

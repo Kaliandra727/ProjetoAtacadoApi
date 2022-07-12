@@ -22,6 +22,15 @@ namespace Atacado.Service.Auxiliar
             this.ufRepo = new UnidadesFederacaoRepository(new AtacadoContext());
         }
 
+        public RelatorioAquiculturaService(AtacadoContext contexto)
+        {
+            this.contexto = new AtacadoContext();
+            this.aquiculturaRepo = new AquiculturaRepository(contexto);
+            this.tipoAquiculturarepo = new TipoAquiculturaRepository(contexto);
+            this.municipioRepo = new MunicipioRepository(contexto);
+            this.ufRepo = new UnidadesFederacaoRepository(contexto);
+        }
+
         public List<RelatorioAquiculturaPoco> PesquisaPorIdAquiculturaAnoIdmunicipio(int idAquicultura, int ano, int idMunicipio)
         {
             List<RelatorioAquiculturaPoco> retorno =

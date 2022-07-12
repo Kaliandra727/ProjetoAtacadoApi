@@ -10,9 +10,9 @@ namespace Atacado.EF.Database
     public partial class AreaConhecimento
     {
         [Key]
-        [Column("ID_Area_Conhecimento")]
+        [Column("ID_Area")]
         public int IdAreaConhecimento { get; set; }
-        [Column("Descricao_Area_Conhecimento")]
+        [Column("Descricao_Area")]
         [Unicode(false)]
         public string? DescricaoAreaConhecimento { get; set; }
         public bool? Situacao { get; set; }

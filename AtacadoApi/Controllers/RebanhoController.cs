@@ -1,4 +1,5 @@
-﻿using Atacado.Poco.Auxiliar;
+﻿using Atacado.EF.Database;
+using Atacado.Poco.Auxiliar;
 using Atacado.Service.Auxiliar;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,9 +18,9 @@ namespace AtacadoApi.Controllers
         /// <summary>
         /// Construtor da classe.
         /// </summary>
-        public RebanhoController()
+        public RebanhoController(AtacadoContext contexto)
         {
-            this.servico = new RebanhoService();
+            this.servico = new RebanhoService(contexto);
         }
 
         /// <summary>
